@@ -33,7 +33,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="mb-0 small">
-          &copy; {new Date().getFullYear()} <strong>MANRIO</strong> — Todos os direitos reservados.
+          &copy; {new Date().getFullYear()} <strong>MANRIO ENGENHARIA</strong> — Todos os direitos reservados.
         </p>
       </div>
     </footer>

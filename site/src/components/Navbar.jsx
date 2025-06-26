@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#0f0f0f' }}>
       <div className="container-fluid">
         <Link className="navbar-brand text-success fw-bold" to="/" style={{ fontSize: '1.5rem' }}>
-          Manrio
+          Manrio Engenharia
         </Link>
 
         <button
