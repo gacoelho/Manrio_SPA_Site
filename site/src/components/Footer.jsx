@@ -7,7 +7,7 @@ export default function Footer() {
           <a href="#" className="text-light mx-2">
             <i className="fab fa-facebook fa-lg"></i>
           </a>
-          <a href="#" className="text-light mx-2">
+          <a href="https://www.instagram.com/manriorj/" className="text-light mx-2">
             <i className="fab fa-instagram fa-lg"></i>
           </a>
           <a href="#" className="text-light mx-2">
@@ -21,13 +21,13 @@ export default function Footer() {
         {/* Footer links */}
         <ul className="list-inline mb-3">
           <li className="list-inline-item mx-2">
-            <a href="#" className="text-secondary text-decoration-none">Home</a>
+            <a href="#" className="text-secondary text-decoration-none">manrio@manriorj.com</a>
           </li>
           <li className="list-inline-item mx-2">
-            <a href="#" className="text-secondary text-decoration-none">Serviços</a>
+            <a href="#" className="text-secondary text-decoration-none">(21) 99113-5673</a>
           </li>
           <li className="list-inline-item mx-2">
-            <a href="#" className="text-secondary text-decoration-none">Contato</a>
+            <a href="#" className="text-secondary text-decoration-none">(22) 99622-5673</a>
           </li>
         </ul>
 

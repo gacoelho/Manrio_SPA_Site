@@ -11,14 +11,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (
-    <Router basename="/site"> {/* MUITO IMPORTANTE para GitHub Pages */}
+    <div className="app-wrapper">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
-    </Router>
-
+    </div>
   )
 }
 

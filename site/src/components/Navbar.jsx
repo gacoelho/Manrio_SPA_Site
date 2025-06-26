@@ -7,6 +7,7 @@ export default function Navbar() {
         <Link className="navbar-brand text-success fw-bold" to="/" style={{ fontSize: '1.5rem' }}>
           Manrio
         </Link>
+
         <button
           className="navbar-toggler bg-success"
           type="button"
@@ -24,27 +25,47 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link text-light" to="/">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/sistemas">Sistemas</Link>
+
+            {/* Dropdown SISTEMAS */}
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle text-light"
+                href="#"
+                id="sistemasDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Sistemas
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="sistemasDropdown">
+                <li><Link className="dropdown-item" to="/seguranca">Segurança</Link></li>
+                <li><Link className="dropdown-item" to="/energia">Energia</Link></li>
+                <li><Link className="dropdown-item" to="/incendio">Incêndio</Link></li>
+                <li><Link className="dropdown-item" to="/telecom">Telecom</Link></li>
+              </ul>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link text-light" to="/projetos">Projetos</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link text-light" to="/portaria">Portaria Remota</Link>
             </li>
+
+            {/* Dropdown MAIS */}
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle text-success"
                 href="#"
-                id="navbarDropdownMenuLink"
+                id="maisDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 Mais
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+              <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="maisDropdown">
                 <li><Link className="dropdown-item" to="/sobre">Sobre</Link></li>
                 <li><Link className="dropdown-item" to="/contato">Contato</Link></li>
               </ul>
@@ -55,3 +76,4 @@ export default function Navbar() {
     </nav>
   )
 }
+

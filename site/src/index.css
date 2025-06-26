@@ -24,12 +24,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f0f0f0;
-  color: #222;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
 }
 
 h1 {
@@ -76,5 +74,24 @@ html, body, #root {
   padding: 0;
   background-color: #1e1e1e;
   color: #f0f0f0;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #111;
+  color: #f0f0f0;
+  padding: 1rem;
+}
+
+.card, .bg-light, .navbar, .dropdown-menu {
+  background-color: #222 !important;
+  color: #f0f0f0 !important;
 }
 
