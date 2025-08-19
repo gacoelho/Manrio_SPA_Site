@@ -6,6 +6,10 @@ import Home from './pages/Home'
 import Sobre from './pages/Sobre'
 import Contato from './pages/Contato'
 import Noticias from './pages/Noticias'
+import Seguranca from './pages/Seguranca'
+import Energia from './pages/Energia'
+import Incendio from './pages/Incendio'
+import Telecom from './pages/Telecom'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
@@ -22,6 +26,10 @@ function App() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/noticias" element={<Noticias />} />
+        <Route path="/seguranca" element={<Seguranca />} />
+        <Route path="/energia" element={<Energia />} />
+        <Route path="/incendio" element={<Incendio />} />
+        <Route path="/telecom" element={<Telecom />} />
       </Routes>
       <Footer />
     </div>
