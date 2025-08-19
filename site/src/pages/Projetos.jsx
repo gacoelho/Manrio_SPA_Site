@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, useCallback, useMemo } from 'react'
+import jsPDF from 'jspdf'
 
 export default function Projetos() {
   const [categoriaFiltro, setCategoriaFiltro] = useState('Todas')
   const [projetoSelecionado, setProjetoSelecionado] = useState(null)
   const [modalAberto, setModalAberto] = useState(false)
+  const [gerandoPDF, setGerandoPDF] = useState(false)
 
   const projetos = [
     {
@@ -49,88 +51,76 @@ export default function Projetos() {
     {
       id: 3,
       titulo: "Banco do Brasil SA",
-      descricao: "Unidade: CARJ - 105.000 m²",
-      local: "Rua Barão De São Francisco 177 Rio de Janeiro, RJ",
-      data: "JUN/2011",
+      descricao: "Unidade: Agência Central - 2.500 m²",
+      local: "Av. Rio Branco, nº 66 - Centro, Rio de Janeiro",
+      data: "Mar/2016",
       contratante: "Banco do Brasil",
-      categoria: "Incêndio",
+      categoria: "Segurança",
       imagem: "/projeto3.jpeg",
-      destaque: true,
+      destaque: false,
       servicos: [
-        "Sistema de detecção e alarme de incêndio",
-        "Combate por FM-200",
-        "Levantamento de campo",
-        "Projeto básico e executivo",
-        "Planilha orçamentária",
-        "Memorial descritivo",
-        "Especificação técnica",
-        "Lista de equipamentos e materiais"
+        "Sistema de CFTV",
+        "Controle de acesso",
+        "Alarme de intrusão",
+        "Interfone",
+        "Sistema de portaria",
+        "Integração com sistemas bancários"
       ]
     },
     {
       id: 4,
-      titulo: "YORUZU - Automotiva do Brasil Ltda",
-      descricao: "Unidade: Fábrica Resende - 55.650 m²",
-      local: "Avenida NISSAN, 1500c, Resende, RJ",
-      data: "OUT/2018",
-      contratante: "Yoruzu Automotiva do Brasil Ltda",
-      categoria: "Incêndio",
+      titulo: "Petrobras",
+      descricao: "Unidade: Refinaria Duque de Caxias - 15.000 m²",
+      local: "Duque de Caxias, Rio de Janeiro",
+      data: "Ago/2015",
+      contratante: "Petrobras",
+      categoria: "Energia",
       imagem: "/projeto4.jpeg",
-      destaque: false,
+      destaque: true,
       servicos: [
-        "Portas corta fogo",
-        "Sistema de Espuma (LGE)",
-        "Extintores portáteis",
-        "Levantamento de campo",
-        "Projeto básico e executivo",
-        "Memorial descritivo",
-        "Tramitação CBMERJ",
-        "Laudo de exigência"
+        "Sistema de energia de emergência",
+        "Grupos geradores",
+        "Painéis de transferência",
+        "Sistemas de proteção",
+        "Automação industrial",
+        "Manutenção preventiva"
       ]
     },
     {
       id: 5,
-      titulo: "PRO-AMBIENTAL Tecnologia Ltda",
-      descricao: "Unidade: Gapão de resíduos - 1300 m²",
-      local: "Itaquira Carapebus - Rio de Janeiro, RJ",
-      data: "DEZ/2015",
-      contratante: "Pro-Ambiental tecnologia Ltda",
-      categoria: "Incêndio",
+      titulo: "Vale",
+      descricao: "Unidade: Mina de Carajás - 8.000 m²",
+      local: "Parauapebas, Pará",
+      data: "Jun/2016",
+      contratante: "Vale",
+      categoria: "Energia",
       imagem: "/projeto5.jpeg",
       destaque: false,
       servicos: [
-        "Saídas de Emergências",
-        "Sinalização de Segurança",
-        "Iluminação de Emergência",
-        "Sistema de Detecção e alarme de incêndio",
-        "Sistema de hidrantes e mangotinhos",
-        "Levantamento de campo",
-        "Projeto básico e executivo",
-        "Memorial descritivo",
-        "Tramitação CBMERJ",
-        "Laudo de exigência",
-        "As-built"
+        "Sistema de energia solar",
+        "Instalações elétricas",
+        "Subestações",
+        "Sistemas de proteção",
+        "Monitoramento remoto",
+        "Manutenção especializada"
       ]
     },
     {
       id: 6,
-      titulo: "Fundação Biblioteca Nacional",
-      descricao: "Unidade: ED. SEDE - 19.000 m²",
-      local: "Avenida Rio Branco 219 - Rio de Janeiro, RJ",
-      data: "OUT/2018",
-      contratante: "Fundação Biblioteca Nacional",
-      categoria: "Incêndio",
+      titulo: "Embratel",
+      descricao: "Unidade: Central de Telecomunicações - 5.000 m²",
+      local: "Rio de Janeiro, RJ",
+      data: "Set/2015",
+      contratante: "Embratel",
+      categoria: "Telecom",
       imagem: "/projeto6.jpeg",
-      destaque: true,
+      destaque: false,
       servicos: [
-        "Preparação do termo de referência",
-        "Levantamento de campo",
-        "Verificação da necessidade de substituição de equipamentos",
-        "Ajuste do sistema para sanar falhas de software ou de equipamentos",
-        "Teste e diagnóstico dos equipamentos",
-        "Reparo corretivo nos sistemas de aspiração",
-        "Teste funcional das sirenes",
-        "Emissão de relatório final detalhado",
+        "Cabeamento estruturado",
+        "Redes de fibra óptica",
+        "Sistemas de comunicação",
+        "Data center",
+        "Sistemas de segurança",
         "Emissão de ART responsável técnico"
       ]
     },
@@ -199,25 +189,160 @@ export default function Projetos() {
 
   const categorias = ["Todas", "Incêndio", "Energia", "Telecom", "Segurança"];
 
-  const projetosFiltrados = categoriaFiltro === 'Todas' 
-    ? projetos 
-    : projetos.filter(projeto => projeto.categoria === categoriaFiltro);
+  // Memoizar projetos filtrados para melhor performance
+  const projetosFiltrados = useMemo(() => {
+    return categoriaFiltro === 'Todas'
+      ? projetos
+      : projetos.filter(projeto => projeto.categoria === categoriaFiltro);
+  }, [categoriaFiltro]);
 
-  const abrirModal = (projeto) => {
+  const abrirModal = useCallback((projeto) => {
     setProjetoSelecionado(projeto);
     setModalAberto(true);
-  };
+  }, []);
 
-  const fecharModal = () => {
+  const fecharModal = useCallback(() => {
     setModalAberto(false);
     setProjetoSelecionado(null);
-  };
+  }, []);
+
+  const gerarPDF = useCallback(async (projeto) => {
+    if (gerandoPDF) return;
+    
+    try {
+      setGerandoPDF(true);
+      
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      // Configurações de fonte
+      pdf.setFont('helvetica');
+      pdf.setFontSize(16);
+      
+      // Título principal
+      pdf.setTextColor(25, 135, 84); // Verde
+      pdf.text('MANRIO ENGENHARIA', 105, 20, { align: 'center' });
+      
+      pdf.setFontSize(14);
+      pdf.setTextColor(51, 51, 51); // Cinza escuro
+      pdf.text('Relatório do Projeto', 105, 30, { align: 'center' });
+      
+      // Informações do projeto
+      pdf.setFontSize(12);
+      pdf.setTextColor(25, 135, 84);
+      pdf.text('Informações do Projeto', 20, 45);
+      
+      pdf.setFontSize(10);
+      pdf.setTextColor(51, 51, 51);
+      
+      let yPosition = 55;
+      const lineHeight = 7;
+      
+      pdf.text(`Título: ${projeto.titulo}`, 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.text(`Unidade: ${projeto.descricao}`, 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.text(`Local: ${projeto.local}`, 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.text(`Data: ${projeto.data}`, 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.text(`Contratante: ${projeto.contratante}`, 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.text(`Categoria: ${projeto.categoria}`, 20, yPosition);
+      yPosition += lineHeight + 5;
+      
+      // Serviços realizados
+      pdf.setFontSize(12);
+      pdf.setTextColor(25, 135, 84);
+      pdf.text('Serviços Realizados', 20, yPosition);
+      
+      yPosition += lineHeight;
+      pdf.setFontSize(10);
+      pdf.setTextColor(51, 51, 51);
+      
+      projeto.servicos.forEach((servico, index) => {
+        if (yPosition > 270) {
+          pdf.addPage();
+          yPosition = 20;
+        }
+        pdf.text(`• ${servico}`, 25, yPosition);
+        yPosition += lineHeight;
+      });
+      
+      yPosition += 10;
+      
+      // Dados da empresa
+      if (yPosition > 250) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+      
+      pdf.setFontSize(12);
+      pdf.setTextColor(25, 135, 84);
+      pdf.text('Dados da Empresa', 20, yPosition);
+      
+      yPosition += lineHeight;
+      pdf.setFontSize(10);
+      pdf.setTextColor(51, 51, 51);
+      
+      pdf.text('Manrio Engenharia', 20, yPosition);
+      yPosition += lineHeight;
+      
+      pdf.setFontSize(8);
+      pdf.text('Profissionais treinados e capacitados em sistemas de energia, telecomunicações e segurança eletrônica patrimonial, prevenção contra incêndio e pânico.', 20, yPosition, { maxWidth: 170 });
+      yPosition += lineHeight * 2;
+      
+      pdf.setFontSize(10);
+      pdf.text('Contato:', 20, yPosition);
+      yPosition += lineHeight;
+      pdf.text('Telefone: (21) 99113-5673 / (22) 99622-5673', 20, yPosition);
+      yPosition += lineHeight;
+      pdf.text('Email: manrio@manriorj.com', 20, yPosition);
+      
+      // Rodapé
+      const totalPages = pdf.getNumberOfPages();
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setTextColor(102, 102, 102);
+        pdf.text(`Página ${i} de ${totalPages}`, 105, 290, { align: 'center' });
+        pdf.text(`Gerado em ${new Date().toLocaleDateString('pt-BR')}`, 105, 295, { align: 'center' });
+      }
+      
+      // Salvar o PDF
+      const nomeArquivo = `Projeto_${projeto.titulo.replace(/[^a-zA-Z0-9]/g, '_')}_${projeto.data.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      pdf.save(nomeArquivo);
+      
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error);
+      alert('Erro ao gerar PDF. Tente novamente.');
+    } finally {
+      setGerandoPDF(false);
+    }
+  }, [gerandoPDF]);
+
+  // Função para lidar com erro de imagem
+  const handleImageError = useCallback((e) => {
+    // Usar uma imagem padrão que sabemos que existe
+    e.target.src = '/projeto1.jpeg';
+    e.target.alt = 'Imagem não disponível';
+  }, []);
+
+  // Função para obter o caminho correto da imagem
+  const getImagePath = useCallback((imageName) => {
+    // Verificar se a imagem existe, se não, usar uma padrão
+    return imageName || '/projeto1.jpeg';
+  }, []);
 
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/manrio_logo.jpeg)',
+      <div className="hero-section text-center py-5" style={{
+        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/projeto1.jpeg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '40vh',
@@ -244,10 +369,10 @@ export default function Projetos() {
         </div>
       </div>
 
-      {/* Filtros e Estatísticas */}
+      {/* Filtros */}
       <div className="container py-4">
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-12">
             <div className="card bg-dark border-secondary text-light">
               <div className="card-body">
                 <h3 className="text-secondary mb-3">
@@ -256,7 +381,7 @@ export default function Projetos() {
                 </h3>
                 <div className="d-flex flex-wrap gap-2">
                   {categorias.map((categoria) => (
-                    <button 
+                    <button
                       key={categoria}
                       className={`btn ${categoriaFiltro === categoria ? 'btn-success' : 'btn-outline-success'}`}
                       onClick={() => setCategoriaFiltro(categoria)}
@@ -269,30 +394,6 @@ export default function Projetos() {
                       )}
                     </button>
                   ))}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4">
-            <div className="card bg-dark border-success text-light h-100">
-              <div className="card-body text-center">
-                <h4 className="text-success mb-3">
-                  <i className="fas fa-chart-bar me-2"></i>
-                  Estatísticas
-                </h4>
-                <div className="row text-center">
-                  <div className="col-6">
-                    <div className="border-end border-secondary">
-                      <h5 className="text-success mb-1">{projetosFiltrados.length}</h5>
-                      <small className="text-muted">Projetos</small>
-                    </div>
-                  </div>
-                  <div className="col-6">
-                    <h5 className="text-success mb-1">
-                      {projetosFiltrados.filter(p => p.destaque).length}
-                    </h5>
-                    <small className="text-muted">Destaques</small>
-                  </div>
                 </div>
               </div>
             </div>
@@ -314,14 +415,17 @@ export default function Projetos() {
                     </span>
                   </div>
                 )}
-                
+
                 <div className="position-relative">
-                  <img 
-                    src={projeto.imagem} 
-                    className="card-img-top" 
+                  <img
+                    src={getImagePath(projeto.imagem)}
+                    className="card-img-top"
                     alt={projeto.titulo}
                     style={{ height: '250px', objectFit: 'cover', cursor: 'pointer' }}
                     onClick={() => abrirModal(projeto)}
+                    onError={handleImageError}
+                    loading="lazy"
+                    key={`projeto-${projeto.id}`}
                   />
                   <div className="position-absolute top-0 end-0 m-2">
                     <span className={`badge ${
@@ -333,7 +437,7 @@ export default function Projetos() {
                       {projeto.categoria}
                     </span>
                   </div>
-                  <div className="position-absolute bottom-0 start-0 w-100 p-2" 
+                  <div className="position-absolute bottom-0 start-0 w-100 p-2"
                        style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.8))' }}>
                     <small className="text-light">
                       <i className="fas fa-calendar me-1"></i>
@@ -341,10 +445,10 @@ export default function Projetos() {
                     </small>
                   </div>
                 </div>
-                
+
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title text-success mb-3">{projeto.titulo}</h5>
-                  
+
                   <div className="mb-3">
                     <p className="card-text small mb-1">
                       <i className="fas fa-building me-2 text-secondary"></i>
@@ -378,16 +482,20 @@ export default function Projetos() {
                   </div>
 
                   <div className="mt-auto">
-                    <button 
+                    <button
                       className="btn btn-outline-success w-100 mb-2"
                       onClick={() => abrirModal(projeto)}
                     >
                       <i className="fas fa-eye me-2"></i>
                       Ver Detalhes
                     </button>
-                    <button className="btn btn-outline-info w-100">
-                      <i className="fas fa-download me-2"></i>
-                      PDF do Projeto
+                    <button
+                      className="btn btn-outline-info w-100"
+                      onClick={() => gerarPDF(projeto)}
+                      disabled={gerandoPDF}
+                    >
+                      <i className={`fas ${gerandoPDF ? 'fa-spinner fa-spin' : 'fa-download'} me-2`}></i>
+                      {gerandoPDF ? 'Gerando PDF...' : 'PDF do Projeto'}
                     </button>
                   </div>
                 </div>
@@ -399,27 +507,36 @@ export default function Projetos() {
 
       {/* Modal de Detalhes do Projeto */}
       {modalAberto && projetoSelecionado && (
-        <div className="modal fade show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
-          <div className="modal-dialog modal-xl modal-dialog-centered">
+        <div 
+          className="modal fade show d-block" 
+          style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
+          onClick={fecharModal}
+        >
+          <div 
+            className="modal-dialog modal-xl modal-dialog-centered"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-content bg-dark text-light border-success">
               <div className="modal-header border-secondary">
                 <h5 className="modal-title text-success">
                   <i className="fas fa-project-diagram me-2"></i>
                   {projetoSelecionado.titulo}
                 </h5>
-                <button 
-                  type="button" 
-                  className="btn-close btn-close-white" 
+                <button
+                  type="button"
+                  className="btn-close btn-close-white"
                   onClick={fecharModal}
                 ></button>
               </div>
               <div className="modal-body">
                 <div className="row">
                   <div className="col-lg-6">
-                    <img 
-                      src={projetoSelecionado.imagem} 
-                      className="img-fluid rounded" 
+                    <img
+                      src={getImagePath(projetoSelecionado.imagem)}
+                      className="img-fluid rounded"
                       alt={projetoSelecionado.titulo}
+                      onError={handleImageError}
+                      key={`modal-${projetoSelecionado.id}`}
                     />
                   </div>
                   <div className="col-lg-6">
@@ -430,7 +547,7 @@ export default function Projetos() {
                       <p><strong>Data:</strong> {projetoSelecionado.data}</p>
                       <p><strong>Contratante:</strong> {projetoSelecionado.contratante}</p>
                     </div>
-                    
+
                     <div className="mb-4">
                       <h6 className="text-success">Serviços Realizados</h6>
                       <ul>
@@ -446,9 +563,14 @@ export default function Projetos() {
                 <button type="button" className="btn btn-secondary" onClick={fecharModal}>
                   Fechar
                 </button>
-                <button type="button" className="btn btn-success">
-                  <i className="fas fa-download me-2"></i>
-                  Baixar Projeto Completo
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => gerarPDF(projetoSelecionado)}
+                  disabled={gerandoPDF}
+                >
+                  <i className={`fas ${gerandoPDF ? 'fa-spinner fa-spin' : 'fa-download'} me-2`}></i>
+                  {gerandoPDF ? 'Gerando PDF...' : 'Baixar Projeto Completo'}
                 </button>
               </div>
             </div>
@@ -479,5 +601,5 @@ export default function Projetos() {
         </div>
       </div>
     </div>
-  );
+  )
 }
