@@ -49,8 +49,13 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link text-light" to="/projetos">Projetos</Link>
             </li>
+            
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/portaria">Portaria Remota</Link>
+              <Link className="nav-link text-light" to="/noticias">Notícias</Link>
+            </li>
+            
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="https://www.atendeportaria.com/riodejaneiro">Portaria Remota</Link>
             </li>
 
             {/* Dropdown MAIS */}
