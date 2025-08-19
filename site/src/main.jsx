@@ -5,9 +5,8 @@ import App from './App.jsx'
 
 import { BrowserRouter } from 'react-router-dom'
 
-// Em desenvolvimento, usar '/' para facilitar o desenvolvimento
-// Em produção, usar '/Manrio_SPA_Site/' para GitHub Pages
-const basename = import.meta.env.DEV ? '/' : '/Manrio_SPA_Site/'
+// Para hospedagem no Hostgator, usar sempre '/' como base
+const basename = '/'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
