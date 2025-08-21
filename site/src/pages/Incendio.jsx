@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+
 export default function Incendio() {
+  const navigate = useNavigate()
   const servicos = [
     {
       id: 1,
@@ -185,7 +188,7 @@ export default function Incendio() {
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{ 
-        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/manrio_logo.jpeg)',
+        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '50vh',
@@ -239,7 +242,7 @@ export default function Incendio() {
                     ))}
                   </ul>
                   
-                  <button className="btn btn-outline-danger mt-4">
+                  <button className="btn btn-outline-danger mt-4" onClick={() => navigate('/contato')}>
                     <i className="fas fa-info-circle me-2"></i>
                     Saiba Mais
                   </button>
@@ -405,11 +408,11 @@ export default function Incendio() {
               proteger sua empresa com sistemas de proteção contra incêndio de última geração.
             </p>
             <div className="d-flex justify-content-center gap-3">
-              <button className="btn btn-danger btn-lg px-5">
+              <button className="btn btn-danger btn-lg px-5" onClick={() => navigate('/contato')}>
                 <i className="fas fa-phone me-2"></i>
                 Solicitar Orçamento
               </button>
-              <button className="btn btn-outline-danger btn-lg px-5">
+              <button className="btn btn-outline-danger btn-lg px-5" onClick={() => navigate('/contato')}>
                 <i className="fas fa-calendar me-2"></i>
                 Agendar Visita Técnica
               </button>

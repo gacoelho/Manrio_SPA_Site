@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/', // Base para hospedagem no Hostgator
+  // Base dinâmica: usa BASE_URL em deploys (como GH Pages) e '/' localmente
+  base: process.env.BASE_URL || '/',
   plugins: [react()],
   build: {
     outDir: 'dist',

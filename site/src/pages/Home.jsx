@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+
 export default function Home() {
+  const navigate = useNavigate()
   return (
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{ 
-        background: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/manrio_logo.jpeg)',
+        background: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '60vh',
@@ -24,7 +27,7 @@ export default function Home() {
           <p className="mb-4" style={{ fontSize: '1.1rem' }}>
             Contratar nunca foi tão simples
           </p>
-          <button className="btn btn-success btn-lg px-5 py-3 fw-bold">
+          <button className="btn btn-success btn-lg px-5 py-3 fw-bold" onClick={() => navigate('/contato')}>
             Solicite um orçamento
           </button>
         </div>
@@ -134,25 +137,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Newsletter Section */}
-      <div className="bg-dark py-5 border-top border-secondary">
-        <div className="container text-center">
-          <h3 className="text-success mb-4">Faça parte da nossa lista de emails</h3>
-          <p className="mb-4">Nunca perca uma atualização</p>
-          <div className="row justify-content-center">
-            <div className="col-md-6">
-              <div className="input-group">
-                <input 
-                  type="email" 
-                  className="form-control bg-dark text-light border-secondary" 
-                  placeholder="Seu email"
-                />
-                <button className="btn btn-success">Assine Já</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Removed newsletter section as requested */}
     </div>
   )
 }

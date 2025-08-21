@@ -91,24 +91,12 @@ export default function Footer() {
         {/* Linha de separação */}
         <hr className="border-secondary my-4" />
 
-        {/* Copyright e Newsletter */}
+        {/* Copyright */}
         <div className="row align-items-center">
-          <div className="col-md-6 mb-3 mb-md-0">
-            <p className="mb-0 small">
+          <div className="col-12">
+            <p className="mb-0 small text-center text-md-start">
               &copy; {new Date().getFullYear()} <strong>MANRIO ENGENHARIA</strong> — Todos os direitos reservados.
             </p>
-          </div>
-          <div className="col-md-6">
-            <div className="input-group">
-              <input 
-                type="email" 
-                className="form-control form-control-sm bg-dark text-light border-secondary" 
-                placeholder="Seu email para newsletter"
-              />
-              <button className="btn btn-success btn-sm">
-                <i className="fas fa-paper-plane"></i>
-              </button>
-            </div>
           </div>
         </div>
       </div>
