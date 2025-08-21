@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+
 export default function Noticias() {
+  const navigate = useNavigate()
   const noticias = [
     {
       id: 1,
@@ -6,7 +9,7 @@ export default function Noticias() {
       resumo: "Distrito Federal anuncia investimentos significativos em projetos de energia solar para reduzir dependência de fontes tradicionais.",
       categoria: "Energia Solar",
       data: "2024",
-      imagem: "/projeto1.jpeg"
+      imagem: `${import.meta.env.BASE_URL}projeto1.jpeg`
     },
     {
       id: 2,
@@ -14,7 +17,7 @@ export default function Noticias() {
       resumo: "Projeções indicam que a energia solar deve se tornar a principal fonte de energia renovável no Brasil nos próximos anos.",
       categoria: "Energia Solar",
       data: "2024",
-      imagem: "/projeto2.jpeg"
+      imagem: `${import.meta.env.BASE_URL}projeto2.jpeg`
     },
     {
       id: 3,
@@ -22,7 +25,7 @@ export default function Noticias() {
       resumo: "Entenda como funciona a tarifa branca de energia e para quem ela é mais vantajosa.",
       categoria: "Energia",
       data: "2024",
-      imagem: "/projeto3.jpeg"
+      imagem: `${import.meta.env.BASE_URL}projeto3.jpeg`
     },
     {
       id: 4,
@@ -30,7 +33,7 @@ export default function Noticias() {
       resumo: "Conheça a evolução histórica dos sistemas de proteção contra incêndio e como a tecnologia transformou a segurança.",
       categoria: "Proteção contra Incêndio",
       data: "2024",
-      imagem: "/projeto4.jpeg"
+      imagem: `${import.meta.env.BASE_URL}projeto4.jpeg`
     }
   ];
 
@@ -38,7 +41,7 @@ export default function Noticias() {
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{ 
-        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/manrio_logo.jpeg)',
+        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '40vh',
@@ -96,7 +99,7 @@ export default function Noticias() {
                   </div>
                   <h5 className="card-title text-success">{noticia.titulo}</h5>
                   <p className="card-text flex-grow-1">{noticia.resumo}</p>
-                  <button className="btn btn-outline-success mt-auto">
+                  <button className="btn btn-outline-success mt-auto" onClick={() => navigate('/contato')}>
                     <i className="fas fa-arrow-right me-2"></i>
                     Ler Mais
                   </button>
@@ -135,37 +138,7 @@ export default function Noticias() {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="row mt-5">
-          <div className="col-12">
-            <div className="card bg-dark border-success text-light">
-              <div className="card-body text-center">
-                <h3 className="text-success mb-4">
-                  <i className="fas fa-newspaper me-3"></i>
-                  Receba Nossas Notícias
-                </h3>
-                <p className="mb-4">
-                  Inscreva-se para receber as últimas notícias e atualizações do setor de engenharia
-                </p>
-                <div className="row justify-content-center">
-                  <div className="col-md-6">
-                    <div className="input-group">
-                      <input 
-                        type="email" 
-                        className="form-control bg-dark text-light border-secondary" 
-                        placeholder="Seu email"
-                      />
-                      <button className="btn btn-success">
-                        <i className="fas fa-paper-plane me-2"></i>
-                        Inscrever
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Newsletter removed as requested */}
       </div>
     </div>
   )

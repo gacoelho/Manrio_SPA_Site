@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#0f0f0f' }}>
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#0f0f0f' }}>
       <div className="container-fluid">
         <Link className="navbar-brand text-success fw-bold" to="/" style={{ fontSize: '1.5rem' }}>
           Manrio Engenharia

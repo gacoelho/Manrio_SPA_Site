@@ -16,7 +16,7 @@ export default function Projetos() {
       data: "Dez/2015",
       contratante: "Conaut Controles Automáticos",
       categoria: "Incêndio",
-      imagem: "/projeto1.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto1.jpeg`,
       destaque: true,
       servicos: [
         "Saídas de Emergência",
@@ -36,7 +36,7 @@ export default function Projetos() {
       data: "Dez/2014",
       contratante: "Linde Gases",
       categoria: "Incêndio",
-      imagem: "/projeto2.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto2.jpeg`,
       destaque: false,
       servicos: [
         "Sistema de detecção e alarme de incêndio",
@@ -56,7 +56,7 @@ export default function Projetos() {
       data: "Mar/2016",
       contratante: "Banco do Brasil",
       categoria: "Segurança",
-      imagem: "/projeto3.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto3.jpeg`,
       destaque: false,
       servicos: [
         "Sistema de CFTV",
@@ -75,7 +75,7 @@ export default function Projetos() {
       data: "Ago/2015",
       contratante: "Petrobras",
       categoria: "Energia",
-      imagem: "/projeto4.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto4.jpeg`,
       destaque: true,
       servicos: [
         "Sistema de energia de emergência",
@@ -94,7 +94,7 @@ export default function Projetos() {
       data: "Jun/2016",
       contratante: "Vale",
       categoria: "Energia",
-      imagem: "/projeto5.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto5.jpeg`,
       destaque: false,
       servicos: [
         "Sistema de energia solar",
@@ -113,7 +113,7 @@ export default function Projetos() {
       data: "Set/2015",
       contratante: "Embratel",
       categoria: "Telecom",
-      imagem: "/projeto6.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto6.jpeg`,
       destaque: false,
       servicos: [
         "Cabeamento estruturado",
@@ -132,7 +132,7 @@ export default function Projetos() {
       data: "2015",
       contratante: "Inova Telecom - Oi Telecomunicações",
       categoria: "Energia",
-      imagem: "/projeto7.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto7.jpeg`,
       destaque: false,
       servicos: [
         "Site survey",
@@ -152,7 +152,7 @@ export default function Projetos() {
       data: "MAI/2016",
       contratante: "NESIC do Brasil S/A",
       categoria: "Energia",
-      imagem: "/projeto8.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto8.jpeg`,
       destaque: false,
       servicos: [
         "Sistema de energia AC",
@@ -174,7 +174,7 @@ export default function Projetos() {
       data: "2011 e 2016",
       contratante: "GLOBENET",
       categoria: "Telecom",
-      imagem: "/projeto9.jpeg",
+      imagem: `${import.meta.env.BASE_URL}projeto9.jpeg`,
       destaque: false,
       servicos: [
         "Conexão de clientes",
@@ -328,21 +328,21 @@ export default function Projetos() {
   // Função para lidar com erro de imagem
   const handleImageError = useCallback((e) => {
     // Usar uma imagem padrão que sabemos que existe
-    e.target.src = '/projeto1.jpeg';
+    e.target.src = `${import.meta.env.BASE_URL}projeto1.jpeg`;
     e.target.alt = 'Imagem não disponível';
   }, []);
 
   // Função para obter o caminho correto da imagem
   const getImagePath = useCallback((imageName) => {
     // Verificar se a imagem existe, se não, usar uma padrão
-    return imageName || '/projeto1.jpeg';
+    return imageName || `${import.meta.env.BASE_URL}projeto1.jpeg`;
   }, []);
 
   return (
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{
-        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/projeto1.jpeg)',
+        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}projeto1.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '40vh',
@@ -589,11 +589,11 @@ export default function Projetos() {
             Entre em contato conosco para discutir suas necessidades e solicitar um orçamento
           </p>
           <div className="d-flex justify-content-center gap-3">
-            <button className="btn btn-success btn-lg px-5">
+            <button className="btn btn-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com'}>
               <i className="fas fa-phone me-2"></i>
               Solicitar Orçamento
             </button>
-            <button className="btn btn-outline-success btn-lg px-5">
+            <button className="btn btn-outline-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com'}>
               <i className="fas fa-envelope me-2"></i>
               Enviar Mensagem
             </button>

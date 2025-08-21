@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
 import Projetos from './pages/Projetos'
 import Home from './pages/Home'
@@ -19,6 +20,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function App() {
   return (
     <div className="app-wrapper">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

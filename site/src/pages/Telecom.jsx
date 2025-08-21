@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+
 export default function Telecom() {
+  const navigate = useNavigate()
   const servicos = [
     {
       id: 1,
@@ -189,7 +192,7 @@ export default function Telecom() {
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{ 
-        background: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(/manrio_logo.jpeg)',
+        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '50vh',
@@ -243,7 +246,7 @@ export default function Telecom() {
                     ))}
                   </ul>
                   
-                  <button className="btn btn-outline-info mt-4">
+                  <button className="btn btn-outline-info mt-4" onClick={() => navigate('/contato')}>
                     <i className="fas fa-info-circle me-2"></i>
                     Saiba Mais
                   </button>
@@ -410,11 +413,11 @@ export default function Telecom() {
               transformar sua infraestrutura de telecomunicações com as melhores tecnologias do mercado.
             </p>
             <div className="d-flex justify-content-center gap-3">
-              <button className="btn btn-info btn-lg px-5 text-dark">
+              <button className="btn btn-info btn-lg px-5 text-dark" onClick={() => navigate('/contato')}>
                 <i className="fas fa-calculator me-2"></i>
                 Simular Projeto
               </button>
-              <button className="btn btn-outline-info btn-lg px-5">
+              <button className="btn btn-outline-info btn-lg px-5" onClick={() => navigate('/contato')}>
                 <i className="fas fa-phone me-2"></i>
                 Solicitar Orçamento
               </button>
