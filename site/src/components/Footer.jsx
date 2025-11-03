@@ -1,103 +1,117 @@
 import { Link } from 'react-router-dom'
 
 export default function Footer() {
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
-    <footer className="bg-dark text-light mt-5 pt-4 pb-3 border-top border-secondary">
-      <div className="container">
-        <div className="row">
+    <footer className="footer-manrio mt-5">
+      <div className="footer-overlay" aria-hidden="true" />
+      <div className="container py-5">
+        <div className="row gy-4">
           {/* Informações da Empresa */}
-          <div className="col-lg-4 mb-4">
-            <h5 className="text-success mb-3">Manrio Engenharia</h5>
-            <p className="small text-muted">
-              Profissionais treinados e capacitados em sistemas de energia, telecomunicações 
-              e segurança eletrônica patrimonial, prevenção contra incêndio e pânico.
+          <div className="col-md-6 col-lg-4 footer-column">
+            <h5 className="footer-title">Manrio Engenharia</h5>
+            <p className="footer-text">
+              Profissionais treinados e capacitados em sistemas de energia, telecomunicações e segurança eletrônica
+              patrimonial, prevenção contra incêndio e pânico.
             </p>
-            <div className="d-flex gap-3">
-              <a href="#" className="text-light" aria-label="Facebook">
-                <i className="fab fa-facebook fa-lg"></i>
+            <div className="footer-social d-flex flex-wrap align-items-center gap-3">
+              <a href="#" className="footer-social-link" aria-label="Facebook">
+                <i className="fab fa-facebook" aria-hidden="true"></i>
               </a>
-              <a href="https://www.instagram.com/manriorj/" className="text-light" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <i className="fab fa-instagram fa-lg"></i>
+              <a
+                href="https://www.instagram.com/manriorj/"
+                className="footer-social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <i className="fab fa-instagram" aria-hidden="true"></i>
               </a>
-              <a href="#" className="text-light" aria-label="LinkedIn">
-                <i className="fab fa-linkedin fa-lg"></i>
+              <a href="#" className="footer-social-link" aria-label="LinkedIn">
+                <i className="fab fa-linkedin" aria-hidden="true"></i>
               </a>
-              <a href="#" className="text-light" aria-label="WhatsApp">
-                <i className="fab fa-whatsapp fa-lg"></i>
+              <a href="#" className="footer-social-link" aria-label="WhatsApp">
+                <i className="fab fa-whatsapp" aria-hidden="true"></i>
               </a>
             </div>
           </div>
 
           {/* Links Rápidos */}
-          <div className="col-lg-4 mb-4">
-            <h5 className="text-success mb-3">Links Rápidos</h5>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link to="/" className="text-secondary text-decoration-none">
-                  <i className="fas fa-home me-2"></i>Home
+          <div className="col-md-6 col-lg-4 footer-column">
+            <h5 className="footer-title">Links Rápidos</h5>
+            <ul className="list-unstyled footer-link-list">
+              <li>
+                <Link
+                  to="/"
+                  className="footer-link"
+                  onClick={scrollToTop}
+                >
+                  <i className="fas fa-home me-2" aria-hidden="true"></i>Home
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/sobre" className="text-secondary text-decoration-none">
-                  <i className="fas fa-info-circle me-2"></i>Sobre Nós
+              <li>
+                <Link to="/sobre" className="footer-link">
+                  <i className="fas fa-info-circle me-2" aria-hidden="true"></i>Sobre Nós
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/projetos" className="text-secondary text-decoration-none">
-                  <i className="fas fa-project-diagram me-2"></i>Projetos
+              <li>
+                <Link to="/projetos" className="footer-link">
+                  <i className="fas fa-project-diagram me-2" aria-hidden="true"></i>Projetos
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/noticias" className="text-secondary text-decoration-none">
-                  <i className="fas fa-newspaper me-2"></i>Notícias
+              <li>
+                <Link to="/noticias" className="footer-link">
+                  <i className="fas fa-newspaper me-2" aria-hidden="true"></i>Notícias
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/contato" className="text-secondary text-decoration-none">
-                  <i className="fas fa-envelope me-2"></i>Contato
+              <li>
+                <Link to="/contato" className="footer-link">
+                  <i className="fas fa-envelope me-2" aria-hidden="true"></i>Contato
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Contato */}
-          <div className="col-lg-4 mb-4">
-            <h5 className="text-success mb-3">Contato</h5>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <a href="mailto:manrio@manriorj.com" className="text-secondary text-decoration-none">
-                  <i className="fas fa-envelope me-2"></i>manrio@manriorj.com
+          <div className="col-md-6 col-lg-4 footer-column">
+            <h5 className="footer-title">Contato</h5>
+            <ul className="list-unstyled footer-contact-list">
+              <li>
+                <a href="mailto:manrio@manriorj.com" className="footer-link">
+                  <i className="fas fa-envelope me-2" aria-hidden="true"></i>manrio@manriorj.com
                 </a>
               </li>
-              <li className="mb-2">
-                <a href="tel:+5521991135673" className="text-secondary text-decoration-none">
-                  <i className="fas fa-phone me-2"></i>(21) 99113-5673
+              <li>
+                <a href="tel:+5521991135673" className="footer-link">
+                  <i className="fas fa-phone me-2" aria-hidden="true"></i>(21) 99113-5673
                 </a>
               </li>
-              <li className="mb-2">
-                <a href="tel:+5522996225673" className="text-secondary text-decoration-none">
-                  <i className="fas fa-phone me-2"></i>(22) 99622-5673
+              <li>
+                <a href="tel:+5522996225673" className="footer-link">
+                  <i className="fas fa-phone me-2" aria-hidden="true"></i>(22) 99622-5673
                 </a>
               </li>
-              <li className="mb-2">
-                <span className="text-secondary">
-                  <i className="fas fa-map-marker-alt me-2"></i>Rio de Janeiro, RJ
+              <li>
+                <span className="footer-link d-inline-flex align-items-center">
+                  <i className="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Rio de Janeiro, RJ
                 </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Linha de separação */}
-        <hr className="border-secondary my-4" />
+        <hr className="footer-divider" />
 
-        {/* Copyright */}
-        <div className="row align-items-center">
-          <div className="col-12">
-            <p className="mb-0 small text-center text-md-start">
-              &copy; {new Date().getFullYear()} <strong>MANRIO ENGENHARIA</strong> — Todos os direitos reservados.
-            </p>
-          </div>
+        <div className="footer-bottom d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+          <p className="mb-0 footer-copy">
+            &copy; {new Date().getFullYear()} <strong>MANRIO ENGENHARIA</strong>. Todos os direitos reservados.
+          </p>
+          <span className="footer-tagline">Inovação em engenharia com foco em segurança e eficiência.</span>
         </div>
       </div>
     </footer>
