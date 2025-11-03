@@ -48,11 +48,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/noticias" className="text-secondary text-decoration-none">
-                  <i className="fas fa-newspaper me-2"></i>Notícias
-                </Link>
-              </li>
-              <li className="mb-2">
                 <Link to="/contato" className="text-secondary text-decoration-none">
                   <i className="fas fa-envelope me-2"></i>Contato
                 </Link>
