@@ -1,4 +1,4 @@
-name: Deploy to SFTP Server
+name: Deploy to FTP Server
 
 on:
   push:
@@ -31,26 +31,22 @@ jobs:
         working-directory: ./site
         run: npm run build:hostgator
       
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          # Salvar a chave SSH preservando quebras de linha
-          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          # Verificar se a chave é válida
-          ssh-keygen -l -f ~/.ssh/id_rsa || echo "⚠️ Chave SSH pode estar inválida"
-          # Adicionar host conhecido
-          ssh-keyscan -H ftp.manriorj.com.br >> ~/.ssh/known_hosts 2>/dev/null || true
-      
-      - name: Deploy via SFTP
-        run: |
-          cd site/dist
-          REMOTE_PATH="${FTP_REMOTE_PATH:-/}"
-          # Usar IdentitiesOnly para evitar tentar múltiplas chaves
-          rsync -avz --delete \
-            -e "ssh -p 22 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -o PasswordAuthentication=no" \
-            ./ ${{ secrets.FTP_USERNAME }}@ftp.manriorj.com.br:$REMOTE_PATH
-        env:
-          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
+      - name: Deploy to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.manriorj.com.br
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          ftps-implicit: false
+          local-dir: ./site/dist/
+          server-dir: ${{ secrets.FTP_REMOTE_PATH || '/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+          dangerous-clean-slate: false
+          dry-run: false
 
