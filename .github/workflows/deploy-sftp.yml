@@ -1,0 +1,51 @@
+name: Deploy to SFTP Server
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - 'release/**'
+      - 'hotfix/**'
+    paths:
+      - 'site/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: ./site
+        run: npm ci
+      
+      - name: Build project
+        working-directory: ./site
+        run: npm run build:hostgator
+      
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ftp.manriorj.com.br >> ~/.ssh/known_hosts
+      
+      - name: Deploy via SFTP
+        run: |
+          cd site/dist
+          REMOTE_PATH="${FTP_REMOTE_PATH:-/}"
+          rsync -avz --delete -e "ssh -p 22 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.FTP_USERNAME }}@ftp.manriorj.com.br:$REMOTE_PATH
+        env:
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
+
