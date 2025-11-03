@@ -38,6 +38,9 @@ jobs:
           echo ""
           echo "📄 Verificando index.html:"
           head -20 site/dist/index.html || echo "⚠️ index.html não encontrado!"
+          echo ""
+          echo "📂 Diretório de destino no servidor:"
+          echo "FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || '/public_html' }}"
       
       - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
