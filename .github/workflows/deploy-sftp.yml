@@ -31,19 +31,6 @@ jobs:
         working-directory: ./site
         run: npm run build:hostgator
       
-      - name: Validate secrets
-        run: |
-          if [ -z "${{ secrets.FTP_USERNAME }}" ]; then
-            echo "❌ ERRO: FTP_USERNAME não está configurado!"
-            exit 1
-          fi
-          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
-            echo "❌ ERRO: FTP_PASSWORD não está configurado!"
-            exit 1
-          fi
-          echo "✅ Secrets configurados corretamente"
-        shell: bash
-      
       - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
