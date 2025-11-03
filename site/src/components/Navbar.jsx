@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
 export default function Navbar() {
   const [sistemasDropdownOpen, setSistemasDropdownOpen] = useState(false)
   const [maisDropdownOpen, setMaisDropdownOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const sistemasRef = useRef(null)
   const maisRef = useRef(null)
+  const collapseRef = useRef(null)
 
   // Fechar dropdowns quando clicar fora
   useEffect(() => {
@@ -24,15 +26,53 @@ export default function Navbar() {
     }
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const closeNavbarCollapse = () => {
+    if (typeof window === 'undefined') return
+    const bootstrap = window.bootstrap
+    if (collapseRef.current && bootstrap?.Collapse) {
+      const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseRef.current)
+      collapseInstance.hide()
+    }
+  }
+
+  const handleNavItemClick = () => {
+    setSistemasDropdownOpen(false)
+    setMaisDropdownOpen(false)
+    closeNavbarCollapse()
+  }
+
+  const renderNavLink = (to, label) => (
+    <NavLink
+      to={to}
+      className={({ isActive }) => `nav-link manrio-nav-link ${isActive ? 'active' : ''}`}
+      onClick={handleNavItemClick}
+    >
+      {label}
+    </NavLink>
+  )
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#0f0f0f' }}>
+    <nav className={`navbar navbar-expand-lg manrio-navbar sticky-top ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container-fluid">
-        <Link className="navbar-brand text-success fw-bold" to="/" style={{ fontSize: '1.5rem' }}>
+        <Link className="navbar-brand" to="/">
           Manrio Engenharia
         </Link>
 
         <button
-          className="navbar-toggler bg-success"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavDropdown"
@@ -43,67 +83,129 @@ export default function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown" ref={collapseRef}>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/">Home</Link>
+              {renderNavLink('/', 'Home')}
             </li>
 
-            {/* Dropdown SISTEMAS */}
-            <li className={`nav-item dropdown ${sistemasDropdownOpen ? 'show' : ''}`} ref={sistemasRef}>
-              <button
-                className="nav-link dropdown-toggle text-light"
-                id="sistemasDropdown"
-                type="button"
-                onClick={() => setSistemasDropdownOpen(!sistemasDropdownOpen)}
-                aria-expanded={sistemasDropdownOpen}
-                style={{ background: 'none', border: 'none', padding: '0.5rem 1rem' }}
-              >
-                Sistemas
-              </button>
-              <ul 
-                className={`dropdown-menu dropdown-menu-dark ${sistemasDropdownOpen ? 'show' : ''}`}
-                aria-labelledby="sistemasDropdown"
-              >
-                <li><Link className="dropdown-item" to="/seguranca" onClick={() => setSistemasDropdownOpen(false)}>Segurança</Link></li>
-                <li><Link className="dropdown-item" to="/energia" onClick={() => setSistemasDropdownOpen(false)}>Energia</Link></li>
-                <li><Link className="dropdown-item" to="/incendio" onClick={() => setSistemasDropdownOpen(false)}>Incêndio</Link></li>
-                <li><Link className="dropdown-item" to="/telecom" onClick={() => setSistemasDropdownOpen(false)}>Telecom</Link></li>
-              </ul>
-            </li>
+              {/* Dropdown SISTEMAS */}
+              <li className={`nav-item dropdown ${sistemasDropdownOpen ? 'show' : ''}`} ref={sistemasRef}>
+                <button
+                  className="nav-link dropdown-toggle manrio-nav-link"
+                  id="sistemasDropdown"
+                  type="button"
+                  onClick={() => {
+                    setSistemasDropdownOpen(!sistemasDropdownOpen)
+                    setMaisDropdownOpen(false)
+                  }}
+                  aria-expanded={sistemasDropdownOpen}
+                  style={{ background: 'none', border: 'none' }}
+                >
+                  Sistemas
+                </button>
+                <ul
+                  className={`dropdown-menu dropdown-menu-dark ${sistemasDropdownOpen ? 'show' : ''}`}
+                  aria-labelledby="sistemasDropdown"
+                >
+                  <li>
+                    <NavLink
+                      to="/seguranca"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Segurança
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/energia"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Energia
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/incendio"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Incêndio
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/telecom"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Telecom
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
 
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/projetos">Projetos</Link>
+              {renderNavLink('/projetos', 'Projetos')}
             </li>
             
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/noticias">Notícias</Link>
+              {renderNavLink('/noticias', 'Notícias')}
             </li>
             
             <li className="nav-item">
-              <Link className="nav-link text-light" to="https://www.atendeportaria.com/riodejaneiro">Portaria Remota</Link>
+              <a
+                className="nav-link manrio-nav-link"
+                href="https://www.atendeportaria.com/riodejaneiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleNavItemClick}
+              >
+                Portaria Remota
+              </a>
             </li>
 
-            {/* Dropdown MAIS */}
-            <li className={`nav-item dropdown ${maisDropdownOpen ? 'show' : ''}`} ref={maisRef}>
-              <button
-                className="nav-link dropdown-toggle text-success"
-                id="maisDropdown"
-                type="button"
-                onClick={() => setMaisDropdownOpen(!maisDropdownOpen)}
-                aria-expanded={maisDropdownOpen}
-                style={{ background: 'none', border: 'none', padding: '0.5rem 1rem' }}
-              >
-                Mais
-              </button>
-              <ul 
-                className={`dropdown-menu dropdown-menu-dark dropdown-menu-end ${maisDropdownOpen ? 'show' : ''}`}
-                aria-labelledby="maisDropdown"
-              >
-                <li><Link className="dropdown-item" to="/sobre" onClick={() => setMaisDropdownOpen(false)}>Sobre</Link></li>
-                <li><Link className="dropdown-item" to="/contato" onClick={() => setMaisDropdownOpen(false)}>Contato</Link></li>
-              </ul>
-            </li>
+              {/* Dropdown MAIS */}
+              <li className={`nav-item dropdown ${maisDropdownOpen ? 'show' : ''}`} ref={maisRef}>
+                <button
+                  className="nav-link dropdown-toggle manrio-nav-link"
+                  id="maisDropdown"
+                  type="button"
+                  onClick={() => {
+                    setMaisDropdownOpen(!maisDropdownOpen)
+                    setSistemasDropdownOpen(false)
+                  }}
+                  aria-expanded={maisDropdownOpen}
+                  style={{ background: 'none', border: 'none' }}
+                >
+                  Mais
+                </button>
+                <ul
+                  className={`dropdown-menu dropdown-menu-dark dropdown-menu-end ${maisDropdownOpen ? 'show' : ''}`}
+                  aria-labelledby="maisDropdown"
+                >
+                  <li>
+                    <NavLink
+                      to="/sobre"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Sobre
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/contato"
+                      className={({ isActive }) => `dropdown-item ${isActive ? 'active' : ''}`}
+                      onClick={handleNavItemClick}
+                    >
+                      Contato
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
           </ul>
         </div>
       </div>
