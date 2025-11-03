@@ -10,8 +10,8 @@ export default function Home() {
       <HeroSection
         title="O que somos!"
         subtitle="Profissionais treinados e capacitados em sistemas de energia, telecomunicações e segurança eletrônica patrimonial, prevenção contra incêndio e pânico."
+        backgroundImage={`${import.meta.env.BASE_URL}main_page.jpeg`}
         minHeight="60vh"
-        gradient="green"
       />
       <div className="hero-section text-center py-3" style={{ 
         background: 'linear-gradient(135deg, rgba(15,15,15,0.95) 0%, rgba(25,135,84,0.1) 50%, rgba(15,15,15,0.95) 100%)',
