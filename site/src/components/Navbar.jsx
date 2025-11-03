@@ -75,10 +75,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link text-light" to="/projetos">Projetos</Link>
             </li>
-            
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="https://www.atendeportaria.com/riodejaneiro">Portaria Remota</Link>
-            </li>
 
             {/* Dropdown MAIS */}
             <li className={`nav-item dropdown ${maisDropdownOpen ? 'show' : ''}`} ref={maisRef}>
