@@ -6,9 +6,7 @@ export default function Home() {
     <div className="text-light">
       {/* Hero Section */}
       <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        background: 'linear-gradient(135deg, rgba(15,15,15,0.95) 0%, rgba(25,135,84,0.1) 50%, rgba(15,15,15,0.95) 100%)',
         minHeight: '60vh',
         display: 'flex',
         alignItems: 'center'
