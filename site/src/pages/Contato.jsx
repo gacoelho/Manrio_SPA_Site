@@ -198,9 +198,21 @@ export default function Contato() {
                 <p className="mb-4">Fique por dentro das nossas novidades e projetos</p>
                 
                 <div className="d-flex justify-content-center gap-4">
+                  <a href="#" className="btn btn-outline-primary btn-lg">
+                    <i className="fab fa-facebook-f me-2"></i>
+                    Facebook
+                  </a>
                   <a href="https://www.instagram.com/manriorj/" className="btn btn-outline-danger btn-lg" target="_blank" rel="noopener noreferrer">
                     <i className="fab fa-instagram me-2"></i>
                     Instagram
+                  </a>
+                  <a href="#" className="btn btn-outline-info btn-lg">
+                    <i className="fab fa-linkedin-in me-2"></i>
+                    LinkedIn
+                  </a>
+                  <a href="#" className="btn btn-outline-success btn-lg">
+                    <i className="fab fa-whatsapp me-2"></i>
+                    WhatsApp
                   </a>
                 </div>
               </div>
