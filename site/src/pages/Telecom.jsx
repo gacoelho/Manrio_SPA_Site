@@ -208,13 +208,12 @@ export default function Telecom() {
             <i className="fas fa-bolt me-2"></i>
             Alta Velocidade
           </span>
-            <span className="badge bg-success fs-6 px-3 py-2">
-              <i className="fas fa-shield-alt me-2"></i>
-              Segurança Total
-            </span>
-          </div>
+          <span className="badge bg-success fs-6 px-3 py-2">
+            <i className="fas fa-wifi me-2"></i>
+            Conectividade Total
+          </span>
         </div>
-      </div>
+      </HeroSection>
 
       {/* Serviços Principais */}
       <div className="container py-5">

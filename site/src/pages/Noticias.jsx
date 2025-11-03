@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
 
 export default function Noticias() {
   const navigate = useNavigate()
@@ -39,11 +40,13 @@ export default function Noticias() {
 
   return (
     <div className="text-light">
-import HeroSection from '../components/HeroSection'
-
-export default function Noticias() {
-  const [filtro, setFiltro] = useState('todos')
-  const [noticias] = useState([
+      {/* Hero Section */}
+      <HeroSection
+        title="Notícias & Atualizações"
+        subtitle="Fique por dentro das últimas novidades do setor de engenharia"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="40vh"
+      />
 
       {/* Conteúdo Principal */}
       <div className="container py-5">

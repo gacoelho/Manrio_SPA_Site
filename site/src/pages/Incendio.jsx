@@ -204,13 +204,12 @@ export default function Incendio() {
             <i className="fas fa-shield-alt me-2"></i>
             Proteção Total
           </span>
-            <span className="badge bg-warning text-dark fs-6 px-3 py-2">
-              <i className="fas fa-certificate me-2"></i>
-              CBMERJ Aprovado
-            </span>
-          </div>
+          <span className="badge bg-warning text-dark fs-6 px-3 py-2">
+            <i className="fas fa-certificate me-2"></i>
+            CBMERJ Aprovado
+          </span>
         </div>
-      </div>
+      </HeroSection>
 
       {/* Serviços Principais */}
       <div className="container py-5">

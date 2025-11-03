@@ -208,13 +208,12 @@ export default function Energia() {
             <i className="fas fa-solar-panel me-2"></i>
             Energia Solar
           </span>
-            <span className="badge bg-info fs-6 px-3 py-2">
-              <i className="fas fa-leaf me-2"></i>
-              Sustentável
-            </span>
-          </div>
+          <span className="badge bg-success fs-6 px-3 py-2">
+            <i className="fas fa-leaf me-2"></i>
+            Sustentável
+          </span>
         </div>
-      </div>
+      </HeroSection>
 
       {/* Serviços Principais */}
       <div className="container py-5">
