@@ -31,6 +31,14 @@ jobs:
         working-directory: ./site
         run: npm run build:hostgator
       
+      - name: List files to deploy
+        run: |
+          echo "📦 Arquivos que serão enviados:"
+          ls -lah site/dist/ || echo "⚠️ Pasta dist não encontrada!"
+          echo ""
+          echo "📄 Verificando index.html:"
+          head -20 site/dist/index.html || echo "⚠️ index.html não encontrado!"
+      
       - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
