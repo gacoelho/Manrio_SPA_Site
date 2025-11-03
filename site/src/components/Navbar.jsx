@@ -52,12 +52,12 @@ export default function Navbar() {
             {/* Dropdown SISTEMAS */}
             <li className={`nav-item dropdown ${sistemasDropdownOpen ? 'show' : ''}`} ref={sistemasRef}>
               <button
-                className="nav-link dropdown-toggle text-light btn btn-link border-0 p-0 text-decoration-none"
+                className="nav-link dropdown-toggle text-light"
                 id="sistemasDropdown"
                 type="button"
                 onClick={() => setSistemasDropdownOpen(!sistemasDropdownOpen)}
                 aria-expanded={sistemasDropdownOpen}
-                style={{ background: 'none', color: 'inherit', lineHeight: 'inherit', display: 'flex', alignItems: 'center' }}
+                style={{ background: 'none', border: 'none', padding: '0.5rem 1rem' }}
               >
                 Sistemas
               </button>
@@ -87,12 +87,12 @@ export default function Navbar() {
             {/* Dropdown MAIS */}
             <li className={`nav-item dropdown ${maisDropdownOpen ? 'show' : ''}`} ref={maisRef}>
               <button
-                className="nav-link dropdown-toggle text-success btn btn-link border-0 p-0 text-decoration-none"
+                className="nav-link dropdown-toggle text-success"
                 id="maisDropdown"
                 type="button"
                 onClick={() => setMaisDropdownOpen(!maisDropdownOpen)}
                 aria-expanded={maisDropdownOpen}
-                style={{ background: 'none', color: 'inherit', lineHeight: 'inherit', display: 'flex', alignItems: 'center' }}
+                style={{ background: 'none', border: 'none', padding: '0.5rem 1rem' }}
               >
                 Mais
               </button>
