@@ -301,7 +301,7 @@ export default function Projetos() {
       yPosition += lineHeight;
       pdf.text('Telefone: (21) 99113-5673 / (22) 99622-5673', 20, yPosition);
       yPosition += lineHeight;
-      pdf.text('Email: manrio@manriorj.com', 20, yPosition);
+      pdf.text('Email: manrio@manriorj.com.br', 20, yPosition);
       
       // Rodapé
       const totalPages = pdf.getNumberOfPages();
@@ -588,11 +588,11 @@ export default function Projetos() {
             Entre em contato conosco para discutir suas necessidades e solicitar um orçamento
           </p>
           <div className="d-flex justify-content-center gap-3">
-            <button className="btn btn-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com'}>
+            <button className="btn btn-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com.br'}>
               <i className="fas fa-phone me-2"></i>
               Solicitar Orçamento
             </button>
-            <button className="btn btn-outline-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com'}>
+            <button className="btn btn-outline-success btn-lg px-5" onClick={() => window.location.href = 'mailto:manrio@manriorj.com.br'}>
               <i className="fas fa-envelope me-2"></i>
               Enviar Mensagem
             </button>

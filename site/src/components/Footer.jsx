@@ -65,8 +65,8 @@ export default function Footer() {
             <h5 className="text-success mb-3">Contato</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="mailto:manrio@manriorj.com" className="text-secondary text-decoration-none">
-                  <i className="fas fa-envelope me-2"></i>manrio@manriorj.com
+                <a href="mailto:manrio@manriorj.com.br" className="text-secondary text-decoration-none">
+                  <i className="fas fa-envelope me-2"></i>manrio@manriorj.com.br
                 </a>
               </li>
               <li className="mb-2">

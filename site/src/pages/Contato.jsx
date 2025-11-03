@@ -37,8 +37,8 @@ export default function Contato() {
                   Email
                 </h5>
                 <p className="mb-2">
-                  <a href="mailto:manrio@manriorj.com" className="text-light text-decoration-none">
-                    manrio@manriorj.com
+                  <a href="mailto:manrio@manriorj.com.br" className="text-light text-decoration-none">
+                    manrio@manriorj.com.br
                   </a>
                 </p>
               </div>
