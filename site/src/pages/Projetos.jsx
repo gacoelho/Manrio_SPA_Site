@@ -318,9 +318,8 @@ export default function Projetos() {
       pdf.save(nomeArquivo);
       
     } catch (error) {
-      console.error('Erro ao gerar PDF:', error);
-      alert('Erro ao gerar PDF. Tente novamente.');
-    } finally {
+      // Tratamento de erro silencioso - mostrar feedback ao usuário
+      alert('Erro ao gerar PDF. Por favor, tente novamente mais tarde.');
       setGerandoPDF(false);
     }
   }, [gerandoPDF]);
