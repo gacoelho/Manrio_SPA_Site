@@ -56,8 +56,8 @@ export default function Contato() {
                   </a>
                 </p>
                 <p className="mb-0">
-                  <a href="tel:+5522996225673" className="text-light text-decoration-none">
-                    (22) 99622-5673
+                  <a href="https://wa.me/5522996225673" className="text-light text-decoration-none" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-whatsapp me-2"></i>(22) 99622-5673
                   </a>
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function Contato() {
                     <i className="fab fa-linkedin-in me-2"></i>
                     LinkedIn
                   </a>
-                  <a href="#" className="btn btn-outline-success btn-lg">
+                  <a href="https://wa.me/5522996225673" className="btn btn-outline-success btn-lg" target="_blank" rel="noopener noreferrer">
                     <i className="fab fa-whatsapp me-2"></i>
                     WhatsApp
                   </a>

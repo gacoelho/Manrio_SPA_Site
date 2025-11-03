@@ -22,7 +22,7 @@ export default function Footer() {
               <a href="#" className="text-light" aria-label="LinkedIn">
                 <i className="fab fa-linkedin fa-lg"></i>
               </a>
-              <a href="#" className="text-light" aria-label="WhatsApp">
+              <a href="https://wa.me/5522996225673" className="text-light" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <i className="fab fa-whatsapp fa-lg"></i>
               </a>
             </div>
@@ -70,8 +70,8 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <a href="tel:+5522996225673" className="text-secondary text-decoration-none">
-                  <i className="fas fa-phone me-2"></i>(22) 99622-5673
+                <a href="https://wa.me/5522996225673" className="text-secondary text-decoration-none" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-whatsapp me-2"></i>(22) 99622-5673
                 </a>
               </li>
               <li className="mb-2">
