@@ -40,7 +40,14 @@ export default function Home() {
         <div className="row row-cols-1 row-cols-md-2 g-4 mb-5">
           {/* Segurança */}
           <div className="col">
-            <div className="card h-100 bg-dark border-success text-light shadow-sm hover-card">
+            <div 
+              className="card h-100 bg-dark border-success text-light shadow-sm hover-card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('/seguranca')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/seguranca')}
+            >
               <div className="card-body text-center">
                 <i className="fas fa-shield-alt fa-3x text-success mb-3"></i>
                 <h3 className="card-title text-success">Segurança</h3>
@@ -48,45 +55,78 @@ export default function Home() {
                   A segurança eletrônica possibilita à sua empresa soluções para controle de acesso, registro de presença e muito mais,
                   com total confiabilidade.
                 </p>
+                <button className="btn btn-outline-success mt-3 w-100">
+                  Saiba mais
+                </button>
               </div>
             </div>
           </div>
 
           {/* Incêndio */}
           <div className="col">
-            <div className="card h-100 bg-dark border-danger text-light shadow-sm hover-card">
+            <div 
+              className="card h-100 bg-dark border-danger text-light shadow-sm hover-card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('/incendio')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/incendio')}
+            >
               <div className="card-body text-center">
                 <i className="fas fa-fire-extinguisher fa-3x text-danger mb-3"></i>
                 <h3 className="card-title text-danger">Incêndio</h3>
                 <p className="card-text">
                   A proteção contra incêndio consiste em medidas e equipamentos que tornam o ambiente seguro e facilitam o acesso externo em emergências.
                 </p>
+                <button className="btn btn-outline-danger mt-3 w-100">
+                  Saiba mais
+                </button>
               </div>
             </div>
           </div>
 
           {/* Energia */}
           <div className="col">
-            <div className="card h-100 bg-dark border-warning text-light shadow-sm hover-card">
+            <div 
+              className="card h-100 bg-dark border-warning text-light shadow-sm hover-card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('/energia')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/energia')}
+            >
               <div className="card-body text-center">
                 <i className="fas fa-bolt fa-3x text-warning mb-3"></i>
                 <h3 className="card-title text-warning">Energia</h3>
                 <p className="card-text">
                   Instalação e manutenção elétrica com ferramentas modernas e equipe especializada para oferecer segurança e eficiência.
                 </p>
+                <button className="btn btn-outline-warning mt-3 w-100">
+                  Saiba mais
+                </button>
               </div>
             </div>
           </div>
 
           {/* Telecom */}
           <div className="col">
-            <div className="card h-100 bg-dark border-info text-light shadow-sm hover-card">
+            <div 
+              className="card h-100 bg-dark border-info text-light shadow-sm hover-card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('/telecom')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/telecom')}
+            >
               <div className="card-body text-center">
                 <i className="fas fa-network-wired fa-3x text-info mb-3"></i>
                 <h3 className="card-title text-info">Telecom</h3>
                 <p className="card-text">
                   Projetos completos de redes e sistemas de telecomunicações — do planejamento à instalação e manutenção.
                 </p>
+                <button className="btn btn-outline-info mt-3 w-100">
+                  Saiba mais
+                </button>
               </div>
             </div>
           </div>
