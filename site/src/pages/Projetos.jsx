@@ -358,7 +358,7 @@ export default function Projetos() {
           <div className="d-flex justify-content-center gap-3 mt-4">
             <span className="badge bg-success fs-6 px-3 py-2">
               <i className="fas fa-check-circle me-2"></i>
-              {projetos.length} Projetos Realizados
+              Casos de Sucesso
             </span>
             <span className="badge bg-info fs-6 px-3 py-2">
               <i className="fas fa-industry me-2"></i>
