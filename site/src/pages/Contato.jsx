@@ -180,11 +180,6 @@ export default function Contato() {
                       </label>
                     </div>
                   </div>
-
-                  <button type="submit" className="btn btn-success btn-lg px-5">
-                    <i className="fas fa-paper-plane me-2"></i>
-                    Enviar Mensagem
-                  </button>
                 </form>
               </div>
             </div>

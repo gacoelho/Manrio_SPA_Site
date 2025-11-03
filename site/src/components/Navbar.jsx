@@ -1,6 +1,29 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Navbar() {
+  const [sistemasDropdownOpen, setSistemasDropdownOpen] = useState(false)
+  const [maisDropdownOpen, setMaisDropdownOpen] = useState(false)
+  const sistemasRef = useRef(null)
+  const maisRef = useRef(null)
+
+  // Fechar dropdowns quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sistemasRef.current && !sistemasRef.current.contains(event.target)) {
+        setSistemasDropdownOpen(false)
+      }
+      if (maisRef.current && !maisRef.current.contains(event.target)) {
+        setMaisDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#0f0f0f' }}>
       <div className="container-fluid">
@@ -27,22 +50,25 @@ export default function Navbar() {
             </li>
 
             {/* Dropdown SISTEMAS */}
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle text-light"
-                href="#"
+            <li className={`nav-item dropdown ${sistemasDropdownOpen ? 'show' : ''}`} ref={sistemasRef}>
+              <button
+                className="nav-link dropdown-toggle text-light btn btn-link border-0 p-0 text-decoration-none"
                 id="sistemasDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                type="button"
+                onClick={() => setSistemasDropdownOpen(!sistemasDropdownOpen)}
+                aria-expanded={sistemasDropdownOpen}
+                style={{ background: 'none', color: 'inherit' }}
               >
                 Sistemas
-              </a>
-              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="sistemasDropdown">
-                <li><Link className="dropdown-item" to="/seguranca">Segurança</Link></li>
-                <li><Link className="dropdown-item" to="/energia">Energia</Link></li>
-                <li><Link className="dropdown-item" to="/incendio">Incêndio</Link></li>
-                <li><Link className="dropdown-item" to="/telecom">Telecom</Link></li>
+              </button>
+              <ul 
+                className={`dropdown-menu dropdown-menu-dark ${sistemasDropdownOpen ? 'show' : ''}`}
+                aria-labelledby="sistemasDropdown"
+              >
+                <li><Link className="dropdown-item" to="/seguranca" onClick={() => setSistemasDropdownOpen(false)}>Segurança</Link></li>
+                <li><Link className="dropdown-item" to="/energia" onClick={() => setSistemasDropdownOpen(false)}>Energia</Link></li>
+                <li><Link className="dropdown-item" to="/incendio" onClick={() => setSistemasDropdownOpen(false)}>Incêndio</Link></li>
+                <li><Link className="dropdown-item" to="/telecom" onClick={() => setSistemasDropdownOpen(false)}>Telecom</Link></li>
               </ul>
             </li>
 
@@ -59,20 +85,23 @@ export default function Navbar() {
             </li>
 
             {/* Dropdown MAIS */}
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle text-success"
-                href="#"
+            <li className={`nav-item dropdown ${maisDropdownOpen ? 'show' : ''}`} ref={maisRef}>
+              <button
+                className="nav-link dropdown-toggle text-success btn btn-link border-0 p-0 text-decoration-none"
                 id="maisDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                type="button"
+                onClick={() => setMaisDropdownOpen(!maisDropdownOpen)}
+                aria-expanded={maisDropdownOpen}
+                style={{ background: 'none', color: 'inherit' }}
               >
                 Mais
-              </a>
-              <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="maisDropdown">
-                <li><Link className="dropdown-item" to="/sobre">Sobre</Link></li>
-                <li><Link className="dropdown-item" to="/contato">Contato</Link></li>
+              </button>
+              <ul 
+                className={`dropdown-menu dropdown-menu-dark dropdown-menu-end ${maisDropdownOpen ? 'show' : ''}`}
+                aria-labelledby="maisDropdown"
+              >
+                <li><Link className="dropdown-item" to="/sobre" onClick={() => setMaisDropdownOpen(false)}>Sobre</Link></li>
+                <li><Link className="dropdown-item" to="/contato" onClick={() => setMaisDropdownOpen(false)}>Contato</Link></li>
               </ul>
             </li>
           </ul>
