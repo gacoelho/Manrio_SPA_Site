@@ -57,7 +57,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setSistemasDropdownOpen(!sistemasDropdownOpen)}
                 aria-expanded={sistemasDropdownOpen}
-                style={{ background: 'none', color: 'inherit' }}
+                style={{ background: 'none', color: 'inherit', lineHeight: 'inherit', display: 'flex', alignItems: 'center' }}
               >
                 Sistemas
               </button>
@@ -92,7 +92,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setMaisDropdownOpen(!maisDropdownOpen)}
                 aria-expanded={maisDropdownOpen}
-                style={{ background: 'none', color: 'inherit' }}
+                style={{ background: 'none', color: 'inherit', lineHeight: 'inherit', display: 'flex', alignItems: 'center' }}
               >
                 Mais
               </button>

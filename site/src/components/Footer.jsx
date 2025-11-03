@@ -13,17 +13,8 @@ export default function Footer() {
               e segurança eletrônica patrimonial, prevenção contra incêndio e pânico.
             </p>
             <div className="d-flex gap-3">
-              <a href="#" className="text-light">
-                <i className="fab fa-facebook fa-lg"></i>
-              </a>
-              <a href="https://www.instagram.com/manriorj/" className="text-light">
+              <a href="https://www.instagram.com/manriorj/" className="text-light" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i className="fab fa-instagram fa-lg"></i>
-              </a>
-              <a href="#" className="text-light">
-                <i className="fab fa-linkedin fa-lg"></i>
-              </a>
-              <a href="#" className="text-light">
-                <i className="fab fa-whatsapp fa-lg"></i>
               </a>
             </div>
           </div>
