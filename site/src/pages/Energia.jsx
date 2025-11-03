@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
 
 export default function Energia() {
   const navigate = useNavigate()
@@ -191,27 +192,22 @@ export default function Energia() {
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-warning fw-bold mb-4">
+      <HeroSection
+        title={
+          <>
             <i className="fas fa-bolt me-3"></i>
             Sistemas de Energia
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Soluções sustentáveis em energia solar e sistemas elétricos para um futuro mais limpo e eficiente
-          </p>
-          <div className="d-flex justify-content-center gap-3 mt-4">
-            <span className="badge bg-warning text-dark fs-6 px-3 py-2">
-              <i className="fas fa-solar-panel me-2"></i>
-              Energia Solar
-            </span>
+          </>
+        }
+        subtitle="Soluções sustentáveis em energia solar e sistemas elétricos para um futuro mais limpo e eficiente"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="50vh"
+      >
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <span className="badge bg-warning text-dark fs-6 px-3 py-2">
+            <i className="fas fa-solar-panel me-2"></i>
+            Energia Solar
+          </span>
             <span className="badge bg-info fs-6 px-3 py-2">
               <i className="fas fa-leaf me-2"></i>
               Sustentável

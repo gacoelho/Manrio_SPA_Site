@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
 
 export default function Telecom() {
   const navigate = useNavigate()
@@ -191,27 +192,22 @@ export default function Telecom() {
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-info fw-bold mb-4">
+      <HeroSection
+        title={
+          <>
             <i className="fas fa-network-wired me-3"></i>
             Sistemas de Telecomunicações
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Soluções integradas em telecomunicações para conectar e otimizar sua infraestrutura digital
-          </p>
-          <div className="d-flex justify-content-center gap-3 mt-4">
-            <span className="badge bg-info fs-6 px-3 py-2">
-              <i className="fas fa-bolt me-2"></i>
-              Alta Velocidade
-            </span>
+          </>
+        }
+        subtitle="Soluções integradas em telecomunicações para conectar e otimizar sua infraestrutura digital"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="50vh"
+      >
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <span className="badge bg-info fs-6 px-3 py-2">
+            <i className="fas fa-bolt me-2"></i>
+            Alta Velocidade
+          </span>
             <span className="badge bg-success fs-6 px-3 py-2">
               <i className="fas fa-shield-alt me-2"></i>
               Segurança Total

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
 
 export default function Incendio() {
   const navigate = useNavigate()
@@ -187,27 +188,22 @@ export default function Incendio() {
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-danger fw-bold mb-4">
+      <HeroSection
+        title={
+          <>
             <i className="fas fa-fire-extinguisher me-3"></i>
             Proteção contra Incêndio
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Sistemas completos de detecção, alarme e combate a incêndio para proteger vidas e patrimônios
-          </p>
-          <div className="d-flex justify-content-center gap-3 mt-4">
-            <span className="badge bg-danger fs-6 px-3 py-2">
-              <i className="fas fa-shield-alt me-2"></i>
-              Proteção Total
-            </span>
+          </>
+        }
+        subtitle="Sistemas completos de detecção, alarme e combate a incêndio para proteger vidas e patrimônios"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="50vh"
+      >
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <span className="badge bg-danger fs-6 px-3 py-2">
+            <i className="fas fa-shield-alt me-2"></i>
+            Proteção Total
+          </span>
             <span className="badge bg-warning text-dark fs-6 px-3 py-2">
               <i className="fas fa-certificate me-2"></i>
               CBMERJ Aprovado

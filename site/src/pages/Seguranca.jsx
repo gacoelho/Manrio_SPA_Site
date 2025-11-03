@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
 
 export default function Seguranca() {
   const navigate = useNavigate()
@@ -144,34 +145,28 @@ export default function Seguranca() {
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-success fw-bold mb-4">
+      <HeroSection
+        title={
+          <>
             <i className="fas fa-shield-alt me-3"></i>
             Sistemas de Segurança
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Soluções completas em segurança eletrônica patrimonial para proteger o que é mais importante
-          </p>
-          <div className="d-flex justify-content-center gap-3 mt-4">
-            <span className="badge bg-success fs-6 px-3 py-2">
-              <i className="fas fa-check-circle me-2"></i>
-              Proteção 24/7
-            </span>
-            <span className="badge bg-info fs-6 px-3 py-2">
-              <i className="fas fa-mobile-alt me-2"></i>
-              Controle Remoto
-            </span>
-          </div>
+          </>
+        }
+        subtitle="Soluções completas em segurança eletrônica patrimonial para proteger o que é mais importante"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="50vh"
+      >
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <span className="badge bg-success fs-6 px-3 py-2">
+            <i className="fas fa-check-circle me-2"></i>
+            Proteção 24/7
+          </span>
+          <span className="badge bg-info fs-6 px-3 py-2">
+            <i className="fas fa-mobile-alt me-2"></i>
+            Controle Remoto
+          </span>
         </div>
-      </div>
+      </HeroSection>
 
       {/* Serviços Principais */}
       <div className="container py-5">

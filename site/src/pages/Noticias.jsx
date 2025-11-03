@@ -39,24 +39,11 @@ export default function Noticias() {
 
   return (
     <div className="text-light">
-      {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '40vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-success fw-bold mb-4">
-            Notícias & Atualizações
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Fique por dentro das últimas novidades do setor de engenharia
-          </p>
-        </div>
-      </div>
+import HeroSection from '../components/HeroSection'
+
+export default function Noticias() {
+  const [filtro, setFiltro] = useState('todos')
+  const [noticias] = useState([
 
       {/* Conteúdo Principal */}
       <div className="container py-5">

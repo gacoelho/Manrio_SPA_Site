@@ -1,28 +1,26 @@
 import { useNavigate } from 'react-router-dom'
+import HeroSection from '../components/HeroSection'
+import ServiceCard from '../components/ServiceCard'
 
 export default function Home() {
   const navigate = useNavigate()
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
+      <HeroSection
+        title="O que somos!"
+        subtitle="Profissionais treinados e capacitados em sistemas de energia, telecomunicações e segurança eletrônica patrimonial, prevenção contra incêndio e pânico."
+        minHeight="60vh"
+        gradient="green"
+      />
+      <div className="hero-section text-center py-3" style={{ 
         background: 'linear-gradient(135deg, rgba(15,15,15,0.95) 0%, rgba(25,135,84,0.1) 50%, rgba(15,15,15,0.95) 100%)',
-        minHeight: '60vh',
-        display: 'flex',
-        alignItems: 'center'
       }}>
         <div className="container">
-          <h1 className="display-4 text-success fw-bold mb-4">
-            O que somos!
-          </h1>
-          <p className="lead mb-4" style={{ fontSize: '1.3rem' }}>
-            Profissionais treinados e capacitados em sistemas de energia, telecomunicações e segurança eletrônica patrimonial,
-            prevenção contra incêndio e pânico.
-          </p>
           <h2 className="h3 text-success mb-4">
             Soluções ao seu alcance
           </h2>
-          <p className="mb-4" style={{ fontSize: '1.1rem' }}>
+          <p className="mb-4 lead-md">
             Contratar nunca foi tão simples
           </p>
           <button className="btn btn-success btn-lg px-5 py-3 fw-bold" onClick={() => navigate('/contato')}>
@@ -36,98 +34,34 @@ export default function Home() {
         <h2 className="text-center text-success mb-5">O que podemos fazer!</h2>
         
         <div className="row row-cols-1 row-cols-md-2 g-4 mb-5">
-          {/* Segurança */}
-          <div className="col">
-            <div 
-              className="card h-100 bg-dark border-success text-light shadow-sm hover-card"
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate('/seguranca')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/seguranca')}
-            >
-              <div className="card-body text-center">
-                <i className="fas fa-shield-alt fa-3x text-success mb-3"></i>
-                <h3 className="card-title text-success">Segurança</h3>
-                <p className="card-text">
-                  A segurança eletrônica possibilita à sua empresa soluções para controle de acesso, registro de presença e muito mais,
-                  com total confiabilidade.
-                </p>
-                <button className="btn btn-outline-success mt-3 w-100">
-                  Saiba mais
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Incêndio */}
-          <div className="col">
-            <div 
-              className="card h-100 bg-dark border-danger text-light shadow-sm hover-card"
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate('/incendio')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/incendio')}
-            >
-              <div className="card-body text-center">
-                <i className="fas fa-fire-extinguisher fa-3x text-danger mb-3"></i>
-                <h3 className="card-title text-danger">Incêndio</h3>
-                <p className="card-text">
-                  A proteção contra incêndio consiste em medidas e equipamentos que tornam o ambiente seguro e facilitam o acesso externo em emergências.
-                </p>
-                <button className="btn btn-outline-danger mt-3 w-100">
-                  Saiba mais
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Energia */}
-          <div className="col">
-            <div 
-              className="card h-100 bg-dark border-warning text-light shadow-sm hover-card"
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate('/energia')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/energia')}
-            >
-              <div className="card-body text-center">
-                <i className="fas fa-bolt fa-3x text-warning mb-3"></i>
-                <h3 className="card-title text-warning">Energia</h3>
-                <p className="card-text">
-                  Instalação e manutenção elétrica com ferramentas modernas e equipe especializada para oferecer segurança e eficiência.
-                </p>
-                <button className="btn btn-outline-warning mt-3 w-100">
-                  Saiba mais
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Telecom */}
-          <div className="col">
-            <div 
-              className="card h-100 bg-dark border-info text-light shadow-sm hover-card"
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate('/telecom')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/telecom')}
-            >
-              <div className="card-body text-center">
-                <i className="fas fa-network-wired fa-3x text-info mb-3"></i>
-                <h3 className="card-title text-info">Telecom</h3>
-                <p className="card-text">
-                  Projetos completos de redes e sistemas de telecomunicações — do planejamento à instalação e manutenção.
-                </p>
-                <button className="btn btn-outline-info mt-3 w-100">
-                  Saiba mais
-                </button>
-              </div>
-            </div>
-          </div>
+          <ServiceCard
+            title="Segurança"
+            description="A segurança eletrônica possibilita à sua empresa soluções para controle de acesso, registro de presença e muito mais, com total confiabilidade."
+            icon="fas fa-shield-alt"
+            color="success"
+            route="/seguranca"
+          />
+          <ServiceCard
+            title="Incêndio"
+            description="A proteção contra incêndio consiste em medidas e equipamentos que tornam o ambiente seguro e facilitam o acesso externo em emergências."
+            icon="fas fa-fire-extinguisher"
+            color="danger"
+            route="/incendio"
+          />
+          <ServiceCard
+            title="Energia"
+            description="Instalação e manutenção elétrica com ferramentas modernas e equipe especializada para oferecer segurança e eficiência."
+            icon="fas fa-bolt"
+            color="warning"
+            route="/energia"
+          />
+          <ServiceCard
+            title="Telecom"
+            description="Projetos completos de redes e sistemas de telecomunicações — do planejamento à instalação e manutenção."
+            icon="fas fa-network-wired"
+            color="info"
+            route="/telecom"
+          />
         </div>
 
         {/* Áreas de Atuação */}

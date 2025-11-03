@@ -1,24 +1,15 @@
+import HeroSection from '../components/HeroSection'
+
 export default function Sobre() {
   return (
     <div className="text-light">
       {/* Hero Section */}
-      <div className="hero-section text-center py-5" style={{ 
-        background: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${import.meta.env.BASE_URL}manrio_logo.jpeg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '50vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <div className="container">
-          <h1 className="display-4 text-success fw-bold mb-4">
-            Quem Somos
-          </h1>
-          <p className="lead" style={{ fontSize: '1.3rem' }}>
-            Conheça a história e valores da Manrio Engenharia
-          </p>
-        </div>
-      </div>
+      <HeroSection
+        title="Quem Somos"
+        subtitle="Conheça a história e valores da Manrio Engenharia"
+        backgroundImage={`${import.meta.env.BASE_URL}manrio_logo.jpeg`}
+        minHeight="50vh"
+      />
 
       {/* Conteúdo Principal */}
       <div className="container py-5">
