@@ -56,4 +56,5 @@ jobs:
             **/.DS_Store
           dangerous-clean-slate: false
           dry-run: false
+          log-level: verbose
 
