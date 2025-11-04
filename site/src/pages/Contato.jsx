@@ -52,7 +52,7 @@ export default function Contato() {
                 </h5>
                 <p className="mb-2">
                   <a href="tel:+5521991135673" className="text-light text-decoration-none">
-                    (21) 99113-5673
+                    <i className="fas fa-phone me-2"></i>(21) 99113-5673
                   </a>
                 </p>
                 <p className="mb-0">
